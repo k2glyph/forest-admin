@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: auzmor
+    environment:
+      - APPLICATION_HOST=localhost
+      - APPLICATION_PORT=3000
+      - DATABASE_URL=mysql://root:root@192.168.4.133:7706/lms
+      - DATABASE_SSL=false
+      - DATABASE_ENCRYPT=false
+      - AUTH_SECRET=a4d301c88f5d3202dd36b77900fc2939855ac25f5505d8bb4ab39e80a89ec9c23147608f519d7542058a11b3351e3c05
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src/app
