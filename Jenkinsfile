@@ -90,7 +90,15 @@ pipeline {
             branch 'master'
         }
         steps {
-            sh "echo \"Production deployment happen\""
+            container("gcloud") {
+                withCredentials([file(credentialsId: 'staging', variable: 'staging')]) {
+                    sh("gcloud auth activate-service-account --key-file=${staging}")
+                    sh("gcloud container clusters get-credentials standard-cluster-1 --zone asia-south1-a --project staging-auzmor")
+                }
+                script {
+                    sh "kubectl -n prod set image deployment.v1.apps/admin-portal 'admin-portal=${imageTag}'"
+                }
+            }
         }
     }
   }
