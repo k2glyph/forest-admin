@@ -13,6 +13,6 @@
     "lumber-forestadmin": "^1.2.1",
     "mysql2": "~1.4.2",
     "require-all": "^3.0.0",
-    "sequelize": "~5.8.11"
+    "sequelize": "~5.15.1"
   }
 }
